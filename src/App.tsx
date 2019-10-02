@@ -7,9 +7,11 @@ import { Provider } from 'react-redux';
 class App extends Component {
 	render() {
 		return (
-			<Provider store={store}>
-				<Home />
-			</Provider>
+			<div className="container">
+				<Provider store={store}>
+					<Home />
+				</Provider>
+			</div>
 		);
 	}
 }

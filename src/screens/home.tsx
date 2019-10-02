@@ -1,18 +1,18 @@
 import React from 'react';
+import Header from '../components/Header';
 
 const styles = {
 	container: {
-		display: 'flex',
-		height: '100vh',
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'rgba(8, 76, 97, 1)'
+		backgroundColor: '#464B54'
 	}
 };
 
 const Home: React.FC = () => (
 	<div style={styles.container}>
-		<span>hello</span>
+		<Header content="Welcome to the Trivia Challenge!" />
+		<p>hello</p>
+		<p>hello</p>
+		<p>hello</p>
 	</div>
 );
 
