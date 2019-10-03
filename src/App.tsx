@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from './screens/home';
+import Home from './screens/Home';
 import './styles/App.css';
 import { store } from './redux';
 import { Provider } from 'react-redux';

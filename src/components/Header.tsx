@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { StyleHTMLAttributes } from 'react';
 
 const styles = {
 	header: {
-		display: 'flex',
-		width: '40vw',
-		color: '#fff',
-		backgroundColor: '#20222B'
-	},
-	h3: {
-		margin: '0'
-	}
+		color: 'rgba(239, 45, 86, 1)',
+		backgroundColor: '#20222B',
+		paddingTop: 20,
+		paddingBottom: 20,
+		textAlign: 'center'
+	} as React.CSSProperties,
+	span: {
+		margin: '0',
+		fontWeight: 900,
+		fontSize: 'calc(1.5em + 1vw)',
+		wordWrap: 'break-word'
+	} as React.CSSProperties
 };
 
 interface IProps {
@@ -20,7 +23,7 @@ interface IProps {
 const Header: React.FC<IProps> = props => {
 	return (
 		<div style={styles.header}>
-			<h3 style={styles.h3}>{props.content}</h3>
+			<span style={styles.span}>{props.content}</span>
 		</div>
 	);
 };
