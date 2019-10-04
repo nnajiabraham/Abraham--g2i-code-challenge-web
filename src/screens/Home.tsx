@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Header from '../components/Header';
-import Display from '../components/Display';
+import GameScreenDisplay from '../components/GameScreenDisplay';
 
 const styles = {
 	container: {
@@ -12,15 +11,7 @@ const styles = {
 
 const Home: React.FC = () => (
 	<div style={styles.container}>
-		<Header content="Welcome to the Trivia Challenge!" />
-		<Display>
-			<p>
-				You will be presented with 10 True or False questions.
-				ffdvffgfdgdfgdfgdfgdfgdfgdfgdfg
-				dfsdfsdfdsfdsfdfdfdsffffffffffffffffffffffffffffffffffffffffffffffffff
-			</p>
-			<p>Can you score 100%</p>
-		</Display>
+		<GameScreenDisplay />
 	</div>
 );
 

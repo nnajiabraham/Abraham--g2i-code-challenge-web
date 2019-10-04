@@ -18,12 +18,16 @@ const styles = {
 
 interface IProps {
 	content: string;
+	style?: React.CSSProperties;
+	contentStyle?: React.CSSProperties;
 }
 
 const Header: React.FC<IProps> = props => {
 	return (
-		<div style={styles.header}>
-			<span style={styles.span}>{props.content}</span>
+		<div style={{ ...styles.header, ...props.style }}>
+			<span style={{ ...styles.span, ...props.contentStyle }}>
+				{props.content}
+			</span>
 		</div>
 	);
 };
