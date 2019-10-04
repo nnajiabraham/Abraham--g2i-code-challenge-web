@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const styles = {
 	container: {
-		width: '80vw',
+		width: '70vw',
 		// height: '80vh',
 		backgroundColor: '#fff', //remove this later
 		display: 'flex',
