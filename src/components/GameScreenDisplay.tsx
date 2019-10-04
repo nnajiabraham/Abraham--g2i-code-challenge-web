@@ -2,6 +2,8 @@ import * as React from 'react';
 import Header from './Header';
 import MainContentDisplay from './MainContentDisplay';
 import ActionDisplay from './ActionDisplay';
+import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const styles = {
 	container: {
@@ -9,33 +11,25 @@ const styles = {
 		flexDirection: 'column',
 		height: '100%'
 	} as React.CSSProperties,
-	header: {} as React.CSSProperties,
 	mainContentDisplay: {
-		flex: '1'
+		flex: '1',
+		textAlign: 'center'
 	} as React.CSSProperties,
 	actionDisplay: {} as React.CSSProperties
 };
 
 const GameScreenDisplay: React.FC = () => (
 	<div style={styles.container}>
-		<Header
-			content="Welcome to the Trivia Challenge!"
-			style={styles.header}
-		/>
+		<Header content="Welcome to the Trivia Challenge!" />
 		<MainContentDisplay style={styles.mainContentDisplay}>
-			<p>
-				You will be presented with 10 True or False questions.
-				ffdvffgfdgdfgdfgdfgdfgdfgdfgdfg
-				dfsdfsdfdsfdsfdfdfdsffffffffffffffffffffffffffffffffffffffffffffffffff
-			</p>
+			<p>You will be presented with 10 True or False questions.</p>
 			<p>Can you score 100%</p>
 		</MainContentDisplay>
-		<ActionDisplay style={styles.actionDisplay}>
-			<button type="button">True</button>
-			<button type="button">True</button>
-			<button type="button">True</button>
-			<button type="button">True</button>
-		</ActionDisplay>
+		<Link to="/quiz">
+			<ActionDisplay style={styles.actionDisplay}>
+				<Button>BEGIN</Button>
+			</ActionDisplay>
+		</Link>
 	</div>
 );
 
