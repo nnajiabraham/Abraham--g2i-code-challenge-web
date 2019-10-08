@@ -14,15 +14,19 @@ const styles = {
 	} as React.CSSProperties
 };
 
-interface IProps {
+interface IProps extends React.DOMAttributes<HTMLButtonElement> {
 	style?: React.CSSProperties;
 }
 
-const Button: React.FC<IProps> = props => {
+const Button: React.FC<IProps> = ({ style, children, ...otherProps }) => {
 	return (
 		<>
-			<button type="button" style={{ ...styles.button, ...props.style }}>
-				{props.children}
+			<button
+				type="button"
+				style={{ ...styles.button, ...style }}
+				{...otherProps}
+			>
+				{children}
 			</button>
 		</>
 	);

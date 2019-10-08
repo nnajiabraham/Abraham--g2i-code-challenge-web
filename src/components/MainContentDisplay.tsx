@@ -8,7 +8,8 @@ const styles = {
 		wordWrap: 'break-word',
 		padding: 15,
 		borderRadius: 5,
-		margin: 6
+		margin: 6,
+		textAlign: 'center'
 	} as React.CSSProperties
 };
 

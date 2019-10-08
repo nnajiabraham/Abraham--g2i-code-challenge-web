@@ -2,14 +2,11 @@ import * as React from 'react';
 import Header from '../components/Header';
 import MainContentDisplay from '../components/MainContentDisplay';
 import ActionDisplay from '../components/ActionDisplay';
-import { Link } from 'react-router-dom';
 import Button from '../components/Button';
-import { MdSend } from 'react-icons/md';
 
 const styles = {
 	container: {
 		width: '70vw',
-		// height: '80vh',
 		backgroundColor: '#fff', //remove this later
 		display: 'flex',
 		flexDirection: 'column'
@@ -18,7 +15,6 @@ const styles = {
 		flex: '1',
 		textAlign: 'center'
 	} as React.CSSProperties,
-	actionDisplay: {} as React.CSSProperties,
 	button: {
 		verticalAlign: 'middle'
 	} as React.CSSProperties
@@ -31,11 +27,26 @@ interface IQuizSchema {
 	incorrect_answers: Array<String>;
 }
 
+interface IWrongAnswerSchema {
+	quizId: number;
+	submitted_answer: String;
+}
+
+enum QuizButtonAction {
+	TRUE = 'True',
+	FALSE = 'False',
+	SUBMIT = 'Submit'
+}
+
 const Quiz: React.FC = () => {
 	const a = 3;
-	const [quiz, setQuiz] = React.useState<Array<IQuizSchema>>([
-		{} as IQuizSchema
-	]);
+	const [quiz, setQuiz] = React.useState<Array<IQuizSchema>>([]);
+	const [quizId, setQuizId] = React.useState(0);
+	const [score, setScore] = React.useState(0);
+	const [wrongAnswers, saveWrongAnswers] = React.useState<
+		Array<IWrongAnswerSchema>
+	>([]);
+
 	React.useEffect(() => {
 		console.log(a);
 
@@ -45,7 +56,7 @@ const Quiz: React.FC = () => {
 			.then(res => res.json())
 			.then((res: any) => {
 				setQuiz(res.results);
-				console.log(res.results[0]);
+				console.log(res.results);
 			})
 			.catch(e => console.log(e));
 
@@ -54,25 +65,70 @@ const Quiz: React.FC = () => {
 		};
 	}, []);
 
-	return (
-		<div style={styles.container}>
-			<Header content={quiz[0].category} />
+	const decodeHTML = (string: string) => {
+		return { __html: string };
+	};
 
+	const markAnswer = (key: string) => {
+		console.log('quizId', quizId);
+		console.log('quiz', quiz.length);
+
+		if (quizId < quiz.length - 1) {
+			setQuizId(quizId + 1);
+			if (key === quiz[quizId].correct_answer) {
+				console.log('correct answer');
+				setScore(score + 1);
+			} else {
+				console.log('wrong answer');
+				console.log(wrongAnswers.length);
+				saveWrongAnswers([
+					...wrongAnswers,
+					{
+						quizId: quizId,
+						submitted_answer: key
+					}
+				]);
+			}
+		}
+	};
+
+	const actionButtonHandler = (key: QuizButtonAction) => () => {
+		switch (key) {
+			case QuizButtonAction.TRUE:
+				markAnswer(QuizButtonAction.TRUE.valueOf());
+				break;
+			case QuizButtonAction.FALSE:
+				markAnswer(QuizButtonAction.FALSE.valueOf());
+				break;
+			case QuizButtonAction.SUBMIT:
+				markAnswer(QuizButtonAction.SUBMIT.valueOf());
+				break;
+		}
+	};
+
+	const mainDisplayRender = () =>
+		quiz.length ? (
+			<>
+				<Header content={quiz[quizId].category} />
+				<MainContentDisplay>
+					<p dangerouslySetInnerHTML={decodeHTML(quiz[quizId].question)} />
+				</MainContentDisplay>
+				<ActionDisplay>
+					<Button onClick={actionButtonHandler(QuizButtonAction.TRUE)}>
+						{QuizButtonAction.TRUE}
+					</Button>
+					<Button onClick={actionButtonHandler(QuizButtonAction.FALSE)}>
+						{QuizButtonAction.FALSE}
+					</Button>
+				</ActionDisplay>
+			</>
+		) : (
 			<MainContentDisplay>
-				<p>{quiz[0].question}</p>
+				<p>loading...</p>
 			</MainContentDisplay>
+		);
 
-			<ActionDisplay style={styles.actionDisplay}>
-				<Link to="/quiz">
-					<Button>True</Button>
-					<Button>False</Button>
-				</Link>
-				<Button>
-					Submit <MdSend style={styles.button} />
-				</Button>
-			</ActionDisplay>
-		</div>
-	);
+	return <div style={styles.container}>{mainDisplayRender()}</div>;
 };
 
 export default Quiz;
