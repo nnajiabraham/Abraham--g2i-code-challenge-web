@@ -10,7 +10,7 @@ export interface IWrongAnswerSchema {
 	submitted_answer: String;
 }
 
-export interface IActionModel {
+export interface IAction {
 	type: string;
 	payload: any;
 }
@@ -21,18 +21,12 @@ export enum QuizButtonAction {
 	SUBMIT = 'Submit'
 }
 
-export interface IQuizContext {
+export interface IQuizState {
 	quiz: Array<IQuizSchema>;
 	selectedQuizId: number;
 	score: number;
 	wrongAnswer: Array<IWrongAnswerSchema>;
-	markAnswer: (answer: string) => void;
-	setQuiz: () => Array<IQuizSchema>;
-	setSelectedQuizId: (id: number) => number;
-	setScore: (score: number) => number;
-	saveWrongAnswers: (
-		wrongAnswer: Array<IWrongAnswerSchema>
-	) => Array<IWrongAnswerSchema>;
+	markAnswer: (key: QuizButtonAction) => IQuizState;
 }
 
 export interface IApiResponse {

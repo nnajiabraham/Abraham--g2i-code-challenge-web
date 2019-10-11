@@ -8,16 +8,14 @@ import { Link } from 'react-router-dom';
 const styles = {
 	container: {
 		width: '70vw',
-		// height: '80vh',
-		backgroundColor: '#fff', //remove this later
+		backgroundColor: '#fff',
 		display: 'flex',
 		flexDirection: 'column'
 	} as React.CSSProperties,
 	mainContentDisplay: {
 		flex: '1',
 		textAlign: 'center'
-	} as React.CSSProperties,
-	actionDisplay: {} as React.CSSProperties
+	} as React.CSSProperties
 };
 
 const Home: React.FC = () => (
@@ -29,7 +27,7 @@ const Home: React.FC = () => (
 			<p>Can you score 100%</p>
 		</MainContentDisplay>
 
-		<ActionDisplay style={styles.actionDisplay}>
+		<ActionDisplay>
 			<Link to="/quiz">
 				<Button>BEGIN</Button>
 			</Link>

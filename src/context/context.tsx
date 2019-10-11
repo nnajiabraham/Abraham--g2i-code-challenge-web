@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { IQuizContext } from '../types';
+import { IQuizState } from '../types';
 
-export const initialStateValues = {
+export const initialStateValues: IQuizState = {
 	quiz: [],
 	selectedQuizId: 0,
 	score: 0,
-	wrongAnswer: [{}],
-	markAnswer: answer => {}
-} as IQuizContext;
+	wrongAnswer: []
+} as IQuizState;
 
-export const GameContext = React.createContext(initialStateValues);
-export const useGameContext = () => React.useContext(GameContext);
+export const GameContext = React.createContext<IQuizState | any>(
+	initialStateValues
+);
