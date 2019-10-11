@@ -4,19 +4,7 @@ import MainContentDisplay from '../components/MainContentDisplay';
 import ActionDisplay from '../components/ActionDisplay';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
-
-const styles = {
-	container: {
-		width: '70vw',
-		backgroundColor: '#fff',
-		display: 'flex',
-		flexDirection: 'column'
-	} as React.CSSProperties,
-	mainContentDisplay: {
-		flex: '1',
-		textAlign: 'center'
-	} as React.CSSProperties
-};
+import { styles } from '../styles';
 
 const Home: React.FC = () => (
 	<div style={styles.container}>

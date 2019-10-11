@@ -3,7 +3,7 @@ import {
 	IAction,
 	QuizButtonAction,
 	IWrongAnswerSchema
-} from '../types';
+} from '../utils/types';
 
 export const FETCH_QUIZ = 'FETCH_QUIZ';
 export const MARK_ANSWER = 'MARK_ANSWER';
@@ -12,15 +12,10 @@ const markAnswer = (
 	state: IQuizState,
 	payload: QuizButtonAction
 ): IQuizState => {
-	console.log('Done.', state.selectedQuizId + 1, 'of', state.quiz.length);
-	// let newSelectedQuizId =
-
 	const correctAnswer =
 		payload.valueOf() === state.quiz[state.selectedQuizId].correct_answer;
 
 	const isLastQuestion = state.selectedQuizId === state.quiz.length - 1;
-	console.log('answer is correct', correctAnswer);
-	// const isNotLastQuestion = state.selectedQuizId < state.quiz.length - 1;
 
 	return {
 		...state,
@@ -35,7 +30,9 @@ const markAnswer = (
 						quizId: state.selectedQuizId,
 						submitted_answer: payload.valueOf()
 					} as IWrongAnswerSchema
-			  ]
+			  ],
+		score: correctAnswer ? state.score + 1 : state.score,
+		endQuiz: isLastQuestion
 	};
 };
 

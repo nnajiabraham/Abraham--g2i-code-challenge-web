@@ -26,7 +26,8 @@ export interface IQuizState {
 	selectedQuizId: number;
 	score: number;
 	wrongAnswer: Array<IWrongAnswerSchema>;
-	markAnswer: (key: QuizButtonAction) => IQuizState;
+	markAnswer: (key: QuizButtonAction) => void;
+	endQuiz: boolean;
 }
 
 export interface IApiResponse {

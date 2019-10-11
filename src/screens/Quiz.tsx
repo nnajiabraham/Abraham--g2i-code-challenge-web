@@ -1,36 +1,28 @@
 import * as React from 'react';
 import { GameContext } from '../context/context';
-import { QuizButtonAction } from '../types';
+import { QuizButtonAction } from '../utils/types';
 import Header from '../components/Header';
 import MainContentDisplay from '../components/MainContentDisplay';
 import ActionDisplay from '../components/ActionDisplay';
 import Button from '../components/Button';
-
-const styles = {
-	container: {
-		width: '70vw',
-		backgroundColor: '#fff',
-		display: 'flex',
-		flexDirection: 'column'
-	} as React.CSSProperties,
-	mainContentDisplay: {
-		flex: '1',
-		textAlign: 'center'
-	} as React.CSSProperties
-};
+import { useHistory } from 'react-router-dom';
+import { decodeHTML } from '../utils/util';
+import { styles } from '../styles';
 
 const Quiz: React.FC = () => {
-	const { quiz, selectedQuizId, markAnswer } = React.useContext(GameContext);
+	const { quiz, selectedQuizId, markAnswer, endQuiz } = React.useContext(
+		GameContext
+	);
+	let history = useHistory();
 
-	React.useEffect(() => {
-		if (selectedQuizId + 1 === quiz.length) {
-			console.log('finished');
-		}
-	}, [selectedQuizId]);
-
-	const decodeHTML = (string: string) => {
-		return { __html: string };
+	const moveToResultPage = () => {
+		history.push('/result');
 	};
+	React.useEffect(() => {
+		if (endQuiz) {
+			moveToResultPage();
+		}
+	}, [endQuiz]);
 
 	const actionButtonHandler = (key: QuizButtonAction) => () => {
 		switch (key) {
