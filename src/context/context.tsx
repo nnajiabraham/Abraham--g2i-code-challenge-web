@@ -7,7 +7,8 @@ export const initialStateValues: IQuizState = {
 	score: 0,
 	wrongAnswer: [],
 	endQuiz: false,
-	markAnswer: (key: QuizButtonAction) => {}
+	markAnswer: (key: QuizButtonAction) => {},
+	fetchQuiz: () => {}
 } as IQuizState;
 
 export const GameContext = React.createContext<IQuizState>(initialStateValues);

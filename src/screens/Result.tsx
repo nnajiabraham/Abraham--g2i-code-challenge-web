@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { GameContext } from '../context/context';
+import { GameContext, initialStateValues } from '../context/context';
 import Header from '../components/Header';
 import MainContentDisplay from '../components/MainContentDisplay';
-import { IWrongAnswerSchema } from '../utils/types';
+import { IWrongAnswerSchema, QuizButtonAction } from '../utils/types';
 import { decodeHTML } from '../utils/util';
 import { styles } from '../styles';
+import Button from '../components/Button';
+import ActionDisplay from '../components/ActionDisplay';
+import { useHistory, Link } from 'react-router-dom';
 
 const generateUniqueKey = () => {
 	return Math.random()
@@ -14,6 +17,12 @@ const generateUniqueKey = () => {
 
 const Result: React.FC = () => {
 	const { quiz, wrongAnswer, score } = React.useContext(GameContext);
+	const history = useHistory();
+
+	const actionButtonHandler = () => () => {
+		history.push('/');
+	};
+
 	return (
 		<div style={styles.container}>
 			<Header content={`You Scored ${score} of ${quiz.length}`} />
@@ -40,6 +49,11 @@ const Result: React.FC = () => {
 					))}
 				</MainContentDisplay>
 			) : null}
+			<ActionDisplay>
+				<Button onClick={actionButtonHandler()}>
+					{QuizButtonAction.PLAY_AGAIN}
+				</Button>
+			</ActionDisplay>
 		</div>
 	);
 };

@@ -1,29 +1,39 @@
 import * as React from 'react';
 import { GameContext } from '../context/context';
-import { QuizButtonAction } from '../utils/types';
-import Header from '../components/Header';
+import { useHistory } from 'react-router-dom';
+
 import MainContentDisplay from '../components/MainContentDisplay';
 import ActionDisplay from '../components/ActionDisplay';
+import Header from '../components/Header';
 import Button from '../components/Button';
-import { useHistory } from 'react-router-dom';
+import { QuizButtonAction } from '../utils/types';
 import { decodeHTML } from '../utils/util';
 import { styles } from '../styles';
 
 const Quiz: React.FC = () => {
-	const { quiz, selectedQuizId, markAnswer, endQuiz } = React.useContext(
-		GameContext
-	);
+	const {
+		quiz,
+		selectedQuizId,
+		markAnswer,
+		endQuiz,
+		fetchQuiz
+	} = React.useContext(GameContext);
+
 	let history = useHistory();
 
-	const moveToResultPage = React.useCallback(() => {
+	const moveToResultPage = () => {
 		history.push('/result');
-	}, [history]);
+	};
 
 	React.useEffect(() => {
-		if (endQuiz) {
+		fetchQuiz();
+	}, []);
+
+	React.useEffect(() => {
+		if (endQuiz && selectedQuizId) {
 			moveToResultPage();
 		}
-	}, [endQuiz, moveToResultPage]);
+	}, [endQuiz]);
 
 	const actionButtonHandler = (key: QuizButtonAction) => () => {
 		switch (key) {

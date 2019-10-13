@@ -6,6 +6,7 @@ import {
 } from '../utils/types';
 
 export const FETCH_QUIZ = 'FETCH_QUIZ';
+export const CLEAR_QUIZ = 'CLEAR_QUIZ';
 export const MARK_ANSWER = 'MARK_ANSWER';
 
 const markAnswer = (
@@ -41,10 +42,19 @@ export const quizReducer = (state: IQuizState, action: IAction): IQuizState => {
 		case FETCH_QUIZ:
 			return {
 				...state,
-				quiz: [...state.quiz, ...action.payload]
+				quiz: [...action.payload]
 			};
 		case MARK_ANSWER:
 			return markAnswer(state, action.payload);
+		case CLEAR_QUIZ:
+			return {
+				...state,
+				quiz: action.payload,
+				selectedQuizId: 0,
+				wrongAnswer: [],
+				score: 0,
+				endQuiz: false
+			};
 		default:
 			return state;
 	}

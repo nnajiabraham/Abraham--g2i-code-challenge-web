@@ -18,7 +18,8 @@ export interface IAction {
 export enum QuizButtonAction {
 	TRUE = 'True',
 	FALSE = 'False',
-	SUBMIT = 'Submit'
+	SUBMIT = 'Submit',
+	PLAY_AGAIN = 'Play Again'
 }
 
 export interface IQuizState {
@@ -28,6 +29,7 @@ export interface IQuizState {
 	wrongAnswer: Array<IWrongAnswerSchema>;
 	markAnswer: (key: QuizButtonAction) => void;
 	endQuiz: boolean;
+	fetchQuiz: () => void;
 }
 
 export interface IApiResponse {
