@@ -15,14 +15,15 @@ const Quiz: React.FC = () => {
 	);
 	let history = useHistory();
 
-	const moveToResultPage = () => {
+	const moveToResultPage = React.useCallback(() => {
 		history.push('/result');
-	};
+	}, [history]);
+
 	React.useEffect(() => {
 		if (endQuiz) {
 			moveToResultPage();
 		}
-	}, [endQuiz]);
+	}, [endQuiz, moveToResultPage]);
 
 	const actionButtonHandler = (key: QuizButtonAction) => () => {
 		switch (key) {

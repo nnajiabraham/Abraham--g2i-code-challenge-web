@@ -20,7 +20,7 @@ const StoreProvider: React.FC = ({ children }) => {
 
 	React.useEffect(() => {
 		state.quiz.length === 0 && fetchQuiz();
-	}, []);
+	}, [state.quiz.length]);
 
 	return (
 		<GameContext.Provider value={{ ...state, markAnswer }}>
