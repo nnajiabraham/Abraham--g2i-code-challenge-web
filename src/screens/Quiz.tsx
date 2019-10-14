@@ -21,18 +21,18 @@ const Quiz: React.FC = () => {
 
 	let history = useHistory();
 
-	const moveToResultPage = () => {
-		history.push('/result');
-	};
+	const moveToResultPage = () => history.push('/result');
 
 	React.useEffect(() => {
 		fetchQuiz();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	React.useEffect(() => {
-		if (endQuiz && selectedQuizId) {
+		if (endQuiz) {
 			moveToResultPage();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [endQuiz]);
 
 	const actionButtonHandler = (key: QuizButtonAction) => () => {

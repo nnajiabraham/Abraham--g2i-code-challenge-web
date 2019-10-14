@@ -30,6 +30,7 @@ export interface IQuizState {
 	markAnswer: (key: QuizButtonAction) => void;
 	endQuiz: boolean;
 	fetchQuiz: () => void;
+	clearQuiz: () => void;
 }
 
 export interface IApiResponse {

@@ -48,12 +48,7 @@ export const quizReducer = (state: IQuizState, action: IAction): IQuizState => {
 			return markAnswer(state, action.payload);
 		case CLEAR_QUIZ:
 			return {
-				...state,
-				quiz: action.payload,
-				selectedQuizId: 0,
-				wrongAnswer: [],
-				score: 0,
-				endQuiz: false
+				...action.payload
 			};
 		default:
 			return state;
