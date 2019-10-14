@@ -1,5 +1,3 @@
-![The G2i Logo](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/g2i-web-150px.png 'The G2i logo')
-
 # Trivia Game
 
 ## Available Scripts
@@ -43,35 +41,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 A 10 question, true or false, trivia app in React Web.
 
-### Intro / Home Screen:
-
-![The Intro screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Intro.png 'The intro screen for the app')
-
--  Static Text
--  BEGIN button navigates to the Quiz screen and starts the Quiz
-
-### Quiz Screen:
-
-![The Quiz screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Quiz.png 'The quiz screen for the app')
-
--  The headline is from question category
--  The card element contains the current question
--  The next question should appear after the current question is answered True or False
--  After all questions have been answered, navigate to the Results Screen
-
-### Results screen:
-
-![The Results screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Score.png 'The score screen for the app')
-
--  The Score shows correct and total
--  Displays a list of the questions and whether the answer was correct or not
--  PLAY AGAIN starts over and navigates to the Home Screen
-
----
-
-© 2018 G2i Inc. All rights reserved. Certain information contained herein is derived from information which is protected by copyrights held by G2i Inc. This code challenge, including any parts of it, cannot be duplicated, distributed, copied, modified, used to make a derivative work or used in any way without the prior written consent of G2i Inc.
-
----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
